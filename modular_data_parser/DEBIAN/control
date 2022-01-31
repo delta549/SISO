@@ -1,0 +1,5 @@
+Package: modular_data_parser
+Version: 0.0.1-dev
+Architecture: all
+Maintainer: delta549
+Description: A modular data parser.
