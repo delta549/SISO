@@ -1,16 +1,15 @@
 package main
 
 import (
-	"fmt"
 	"backend/api"
+	"log"
 )
 
+func main() {
+	log.Println("Starting Parser....")
+	apiPort := "3000"
+	api.MainApiLoop(apiPort)
 
-func main(){
-	fmt.Println("Starting Parser....")
-
-	api.MainApiLoop()
-
-	fmt.Println("Finished.....")
+	log.Println("Finished.....")
 
 }
