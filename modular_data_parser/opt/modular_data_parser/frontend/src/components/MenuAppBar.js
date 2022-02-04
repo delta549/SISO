@@ -16,7 +16,7 @@ export default function MuttonAppBar() {
             <img  src={Icons8} alt=""/>
           </IconButton>
           <Typography variant="h6" component="div" sx={{ flexGrow: 1 }}>
-            ShipInShipOut
+            SISO
           </Typography>
         </Toolbar>
       </AppBar>
