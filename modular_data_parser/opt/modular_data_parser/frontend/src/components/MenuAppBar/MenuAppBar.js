@@ -1,4 +1,3 @@
-import * as React from 'react';
 import AppBar from '@mui/material/AppBar';
 import Box from '@mui/material/Box';
 import Toolbar from '@mui/material/Toolbar';
@@ -16,7 +15,7 @@ export default function MenuAppBar() {
             <img  src={Icons8} alt=""/>
           </IconButton>
           <Typography variant="h6" component="div" sx={{ flexGrow: 1 }}>
-            SISO Ship-In -> Ship-Out
+            SISO Ship-In Ship-Out
           </Typography>
         </Toolbar>
       </AppBar>
