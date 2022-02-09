@@ -1,3 +1,32 @@
 .ConvertForm p {
-    color: azure;
+    color: rgb(37, 240, 240)
+}
+
+.ConvertForm label {
+    color: aqua;
+    font-size: large;
+}
+
+.ConvertForm select {
+    background-color: DodgerBlue;
+    border: 1px solid transparent;
+    color: white;
+    font-family: Arial;
+    font-size: larger;
+    padding-left: 10%;
+    padding-right: 10%;
+    margin-left: 18%;
+    margin-top: 5%;
+}
+
+.ConvertForm input {
+    background-color: DodgerBlue;
+    border: 1px solid transparent;
+    color: white;
+    font-family: Arial;
+    padding-left: 10%;
+    padding-right: 10%;
+    margin-left: 39%;
+    margin-top: 10%;
+    font-size: larger;
 }
