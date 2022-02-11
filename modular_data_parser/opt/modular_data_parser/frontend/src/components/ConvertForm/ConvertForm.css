@@ -16,7 +16,7 @@
     padding-left: 10%;
     padding-right: 10%;
     margin-left: 18%;
-    margin-top: 5%;
+    margin-top: 10%;
 }
 
 .ConvertForm input {
@@ -29,4 +29,8 @@
     margin-left: 39%;
     margin-top: 10%;
     font-size: larger;
+}
+
+.Uploader {
+    margin-right: 17%;
 }

@@ -32,6 +32,9 @@ class ConvertForm extends Component {
     return (
       <div className='ConvertForm'>
         <form onSubmit={this.handleSubmit}>
+          <div className='Uploader'>
+            <input type="file" id="myFile" name="filename"/>
+          </div>
           <label>
             <select value={this.state.valueOne} onChange={this.handleChangeFirst}>
               <option value="CSV">CSV</option>
