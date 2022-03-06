@@ -20,7 +20,7 @@ const steps = ['Convert From', 'Choose Filter', 'Convert Too'];
 function getStepContent(step) {
   switch (step) {
     case 0:
-      return <FromForm />;
+      return <FromForm onFromForm={"hi"}/>;
     //case 1:
       //return <PaymentForm />;
     //case 2:
