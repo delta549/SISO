@@ -6,19 +6,21 @@ import FormControl from '@mui/material/FormControl';
 import { createTheme, ThemeProvider } from '@mui/material/styles';
 import CssBaseline from '@mui/material/CssBaseline';
 
-export default function ToForm() {
+export default function ToForm(props) {
 
   const theme = createTheme();
 
-  const [age, setDataIn] = React.useState('');
+  const [toFormData, setToFormData] = React.useState('');
 
   const handleChange = (event) => {
-    setDataIn(event.target.value);
-    console.log(event.target.value)
-    var lang = event.target.value;
-    //this.props.onSelectLanguage(lang);
+    setToFormData(event.target.value);
+    setToFormData(event.target.value);
+    const formData = {
+      dataOut: toFormData
+    }
+    props.onSaveToFormData(formData)
   };
-
+  
   return (
     <ThemeProvider theme={theme}>
       <CssBaseline />
@@ -33,7 +35,7 @@ export default function ToForm() {
               <Select
                 labelId="demo-simple-select-label"
                 id="demo-simple-select"
-                value={age}
+                value={toFormData}
                 label="Select Data"
                 onChange={handleChange}
               >

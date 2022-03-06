@@ -5,29 +5,31 @@ import { Select, InputLabel, MenuItem } from '@mui/material';
 import FormControl from '@mui/material/FormControl';
 import { createTheme, ThemeProvider } from '@mui/material/styles';
 import CssBaseline from '@mui/material/CssBaseline';
-import Button from '@mui/material/Button';
 
 export default function AddressForm(props) {
 
   const theme = createTheme();
 
-  const [dataIn, setDataIn] = React.useState('');
+  let [dataIn, setDataIn] = React.useState('');
 
-  const [files, setFilesIn] = React.useState('');
+  let [files, setFilesIn] = React.useState('');
 
   const handleChangeSelection = (event) => {
-    setDataIn(event.target.value);
+    dataIn = event.target.value
+    setDataIn(dataIn);
   };
 
   const handleChangeFile = (event) => {
-    setFilesIn(event.target.files)
+    console.log("fired")
+    files = event.target.files
+    setFilesIn(files)
     const formData = {
       dataIn: dataIn,
       files: files
     }
     props.onSaveFromFormData(formData);
+    console.log(formData)
   }
-
   return (
     <ThemeProvider theme={theme}>
       <CssBaseline />

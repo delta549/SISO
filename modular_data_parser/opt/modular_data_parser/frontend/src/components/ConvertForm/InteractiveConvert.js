@@ -19,10 +19,19 @@ import ToForm from '../ToForm/ToForm';
 
 const steps = ['Convert From', 'Choose Filter', 'Convert Too'];
 
+const newObj = {}
+
+function allData (allData) {
+  console.log("here")
+  console.log(newObj)
+  
+}
+
 function saveFromFormData(FromFormData) {
   const newFromFormData = {
     ...FromFormData
   };
+  newObj["FromFormData"] = newFromFormData;
   //console.log(newFromFormData)
 };
 
@@ -30,7 +39,16 @@ function saveFilterFormData(FilterFormData) {
   const newFilterFormData = {
     ...FilterFormData
   };
-  console.log(newFilterFormData)
+  newObj["newFilterData"] = newFilterFormData;
+};
+
+function savetoFormData(toFormData) {
+  const newToFormData = {
+    ...toFormData
+  };
+  newObj["newToFormData"] = newToFormData;
+  console.log("firing to form data")
+  console.log(toFormData)
 };
 
 function getStepContent(step) {
@@ -40,7 +58,7 @@ function getStepContent(step) {
     case 1:
       return <FilterForm onSaveFilterFormData={saveFilterFormData}/>;
     case 2:
-      return <ToForm />;
+      return <ToForm onSaveToFormData={savetoFormData}/>;
     default:
       throw new Error('Unknown step');
   }
@@ -49,9 +67,7 @@ function getStepContent(step) {
 const theme = createTheme();
 
 export default function Checkout() {
-  const [activeStep, setActiveStep] = React.useState(0);
-
-  const [dataIn, setDataIn] = React.useState(0) 
+  const [activeStep, setActiveStep] = React.useState(0); 
 
   const handleNext = () => {
     setActiveStep(activeStep + 1);
@@ -80,13 +96,9 @@ export default function Checkout() {
           <React.Fragment>
             {activeStep === steps.length ? (
               <React.Fragment>
+                {allData(newObj)}
                 <Typography variant="h5" gutterBottom>
-                  Thank you for your order.
-                </Typography>
-                <Typography variant="subtitle1">
-                  Your order number is #2001539. We have emailed your order
-                  confirmation, and will send you an update when your order has
-                  shipped.
+                  Converting
                 </Typography>
               </React.Fragment>
             ) : (
@@ -105,7 +117,7 @@ export default function Checkout() {
                     onClick={handleNext}
                     sx={{ mt: 3, ml: 1 }}
                   >
-                    {activeStep === steps.length - 1 ? 'Convert!' : 'Next'}
+                    {activeStep === steps.length - 1 ? 'Convert!': 'Next'}
                   </Button>
                 </Box>
               </React.Fragment>
