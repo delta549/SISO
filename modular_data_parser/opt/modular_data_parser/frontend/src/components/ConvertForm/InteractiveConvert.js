@@ -19,23 +19,26 @@ import ToForm from '../ToForm/ToForm';
 
 const steps = ['Convert From', 'Choose Filter', 'Convert Too'];
 
-function printOutput(output) {
-  console.log(output)
-}
-
-function saveFromFormComponents(FromFormData) {
+function saveFromFormData(FromFormData) {
   const newFromFormData = {
     ...FromFormData
   };
-  console.log(newFromFormData)
-}
+  //console.log(newFromFormData)
+};
+
+function saveFilterFormData(FilterFormData) {
+  const newFilterFormData = {
+    ...FilterFormData
+  };
+  console.log(newFilterFormData)
+};
 
 function getStepContent(step) {
   switch (step) {
     case 0:
-      return <FromForm onSaveFromFormData={saveFromFormComponents}/>;
+      return <FromForm onSaveFromFormData={saveFromFormData}/>;
     case 1:
-      return <FilterForm />;
+      return <FilterForm onSaveFilterFormData={saveFilterFormData}/>;
     case 2:
       return <ToForm />;
     default:
@@ -52,7 +55,6 @@ export default function Checkout() {
 
   const handleNext = () => {
     setActiveStep(activeStep + 1);
-    printOutput("hello")
   };
 
   const handleBack = () => {

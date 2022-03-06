@@ -13,14 +13,14 @@ export default function FilterForm(props) {
 
   const theme = createTheme();
 
-  const [age, setDataIn] = React.useState('');
+  const [filterData, setFilterData] = React.useState('');
 
-  const handleChange = (event, props) => {
-    //setDataIn(event.target.value);
-    console.log(event.target.value)
-    console.log(props.name)
-    //var lang = event.target.value;
-    //this.props.onSelectLanguage(lang);
+  const handleChange = (event) => {
+    setFilterData(event.target.files);
+    const formData = {
+      files: filterData
+    }
+    props.onSaveFilterFormData(formData)
   };
 
   return (
@@ -32,16 +32,10 @@ export default function FilterForm(props) {
         </Typography>
         <Grid container spacing={3}>
           <Grid item xs={6} sm={12}>
-          <Button
-            variant="contained"
-            component="label"
-          >
-            Upload File
             <input
               type="file"
-              hidden
+              onChange={handleChange}
             />
-          </Button>
         </Grid>
         </Grid>
       </React.Fragment>

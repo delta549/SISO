@@ -21,7 +21,6 @@ export default function AddressForm(props) {
 
   const handleChangeFile = (event) => {
     setFilesIn(event.target.files)
-    console.log(event.target.files)
     const formData = {
       dataIn: dataIn,
       files: files
