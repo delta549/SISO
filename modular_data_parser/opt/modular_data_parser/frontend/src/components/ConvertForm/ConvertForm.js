@@ -35,6 +35,10 @@ class ConvertForm extends Component {
           <div className='Uploader'>
             <input type="file" id="myFile" name="filename"/>
           </div>
+          <div className='UploadFilter'>
+            <input type="file" id="myFile" name="filename"/>
+          </div>
+          <div className='DataSelectors'>
           <label>
             <select value={this.state.valueOne} onChange={this.handleChangeFirst}>
               <option value="CSV">CSV</option>
@@ -49,7 +53,10 @@ class ConvertForm extends Component {
               <option value="TSV">TSV</option>
             </select>
           </label>
-          <input type="submit" value="Convert" />
+          </div>
+          <div className='SubmitButton'>
+            <input type="submit" value="Convert" />
+          </div>
         </form>
       </div>
     );
