@@ -5,6 +5,7 @@ import { Select, InputLabel, MenuItem } from '@mui/material';
 import FormControl from '@mui/material/FormControl';
 import { createTheme, ThemeProvider } from '@mui/material/styles';
 import CssBaseline from '@mui/material/CssBaseline';
+import Button from '@mui/material/Button';
 
 export default function AddressForm() {
 
@@ -43,6 +44,18 @@ export default function AddressForm() {
               </Select>
             </FormControl>
           </Grid>
+          <Grid item xs={6} sm={3}>
+          <Button
+            variant="contained"
+            component="label"
+          >
+            Upload File
+            <input
+              type="file"
+              hidden
+            />
+          </Button>
+        </Grid>
         </Grid>
       </React.Fragment>
     </ThemeProvider>
