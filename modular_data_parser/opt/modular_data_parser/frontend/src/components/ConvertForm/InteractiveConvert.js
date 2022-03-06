@@ -12,19 +12,25 @@ import { createTheme, ThemeProvider } from '@mui/material/styles';
 import MenuAppBar from '../MenuAppBar/MenuAppBar';
 
 import FromForm from '../FromForm/FromForm';
+import FilterForm from '../FilterForm/FilterForm'
+import ToForm from '../ToForm/ToForm';
 
 
 
 const steps = ['Convert From', 'Choose Filter', 'Convert Too'];
 
+function printOutput(output) {
+  console.log(output)
+}
+
 function getStepContent(step) {
   switch (step) {
     case 0:
       return <FromForm onFromForm={"hi"}/>;
-    //case 1:
-      //return <PaymentForm />;
-    //case 2:
-    //  return <Review />;
+    case 1:
+      return <FilterForm />;
+    case 2:
+      return <ToForm />;
     default:
       throw new Error('Unknown step');
   }
@@ -37,6 +43,7 @@ export default function Checkout() {
 
   const handleNext = () => {
     setActiveStep(activeStep + 1);
+    printOutput("hello")
   };
 
   const handleBack = () => {

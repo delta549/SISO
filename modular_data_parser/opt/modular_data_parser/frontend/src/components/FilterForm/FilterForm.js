@@ -7,7 +7,9 @@ import { createTheme, ThemeProvider } from '@mui/material/styles';
 import CssBaseline from '@mui/material/CssBaseline';
 import Button from '@mui/material/Button';
 
-export default function AddressForm() {
+
+
+export default function FilterForm() {
 
   const theme = createTheme();
 
@@ -25,26 +27,10 @@ export default function AddressForm() {
       <CssBaseline />
       <React.Fragment>
         <Typography variant="h6" gutterBottom>
-          Choose the data type input e.g: JSON, TSV, CSV
+          Upload your filter file if no filter to be used just skip...
         </Typography>
         <Grid container spacing={3}>
-          <Grid item xs={12} sm={6}>
-            <FormControl variant="filled" sx={{ m: 1, minWidth: 120 }}>
-              <InputLabel id="demo-simple-select-label">Data Type</InputLabel>
-              <Select
-                labelId="demo-simple-select-label"
-                id="demo-simple-select"
-                value={age}
-                label="Select Data"
-                onChange={handleChange}
-              >
-                <MenuItem value={"JSON"}>JSON</MenuItem>
-                <MenuItem value={"CSV"}>CSV</MenuItem>
-                <MenuItem value={"TSV"}>TSV</MenuItem>
-              </Select>
-            </FormControl>
-          </Grid>
-          <Grid item xs={6} sm={3}>
+          <Grid item xs={6} sm={12}>
           <Button
             variant="contained"
             component="label"
@@ -59,6 +45,5 @@ export default function AddressForm() {
         </Grid>
       </React.Fragment>
     </ThemeProvider>
-
   );
 }
