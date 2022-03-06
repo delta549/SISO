@@ -9,16 +9,17 @@ import Button from '@mui/material/Button';
 
 
 
-export default function FilterForm() {
+export default function FilterForm(props) {
 
   const theme = createTheme();
 
   const [age, setDataIn] = React.useState('');
 
-  const handleChange = (event) => {
-    setDataIn(event.target.value);
+  const handleChange = (event, props) => {
+    //setDataIn(event.target.value);
     console.log(event.target.value)
-    var lang = event.target.value;
+    console.log(props.name)
+    //var lang = event.target.value;
     //this.props.onSelectLanguage(lang);
   };
 

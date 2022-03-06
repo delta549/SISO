@@ -23,10 +23,17 @@ function printOutput(output) {
   console.log(output)
 }
 
+function saveFromFormComponents(FromFormData) {
+  const newFromFormData = {
+    ...FromFormData
+  };
+  console.log(newFromFormData)
+}
+
 function getStepContent(step) {
   switch (step) {
     case 0:
-      return <FromForm onFromForm={"hi"}/>;
+      return <FromForm onSaveFromFormData={saveFromFormComponents}/>;
     case 1:
       return <FilterForm />;
     case 2:
@@ -40,6 +47,8 @@ const theme = createTheme();
 
 export default function Checkout() {
   const [activeStep, setActiveStep] = React.useState(0);
+
+  const [dataIn, setDataIn] = React.useState(0) 
 
   const handleNext = () => {
     setActiveStep(activeStep + 1);

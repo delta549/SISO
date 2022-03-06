@@ -7,18 +7,27 @@ import { createTheme, ThemeProvider } from '@mui/material/styles';
 import CssBaseline from '@mui/material/CssBaseline';
 import Button from '@mui/material/Button';
 
-export default function AddressForm() {
+export default function AddressForm(props) {
 
   const theme = createTheme();
 
-  const [age, setDataIn] = React.useState('');
+  const [dataIn, setDataIn] = React.useState('');
 
-  const handleChange = (event) => {
+  const [files, setFilesIn] = React.useState('');
+
+  const handleChangeSelection = (event) => {
     setDataIn(event.target.value);
-    console.log(event.target.value)
-    var lang = event.target.value;
-    //this.props.onSelectLanguage(lang);
   };
+
+  const handleChangeFile = (event) => {
+    setFilesIn(event.target.files)
+    console.log(event.target.files)
+    const formData = {
+      dataIn: dataIn,
+      files: files
+    }
+    props.onSaveFromFormData(formData);
+  }
 
   return (
     <ThemeProvider theme={theme}>
@@ -34,9 +43,9 @@ export default function AddressForm() {
               <Select
                 labelId="demo-simple-select-label"
                 id="demo-simple-select"
-                value={age}
+                value={dataIn}
                 label="Select Data"
-                onChange={handleChange}
+                onChange={handleChangeSelection}
               >
                 <MenuItem value={"JSON"}>JSON</MenuItem>
                 <MenuItem value={"CSV"}>CSV</MenuItem>
@@ -45,16 +54,11 @@ export default function AddressForm() {
             </FormControl>
           </Grid>
           <Grid item xs={6} sm={3}>
-          <Button
-            variant="contained"
-            component="label"
-          >
             Upload File
             <input
               type="file"
-              hidden
+              onChange={handleChangeFile}
             />
-          </Button>
         </Grid>
         </Grid>
       </React.Fragment>
