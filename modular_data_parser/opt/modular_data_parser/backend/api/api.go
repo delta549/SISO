@@ -9,6 +9,11 @@ import (
 // Home page
 func homePage(w http.ResponseWriter, r *http.Request) {
 	fmt.Fprintf(w, "Welcome to the HomePage!")
+
+	fmt.Println(r.Header)
+
+	fmt.Println(r.Body)
+
 	log.Println("Endpoint Hit: homePage")
 }
 

@@ -7,7 +7,7 @@ import (
 
 func main() {
 	log.Println("Starting Parser....")
-	apiPort := "3000"
+	apiPort := "8000"
 	api.MainApiLoop(apiPort)
 
 	log.Println("Finished.....")
