@@ -14,6 +14,7 @@ import MenuAppBar from '../MenuAppBar/MenuAppBar';
 import FromForm from '../FromForm/FromForm';
 import FilterForm from '../FilterForm/FilterForm'
 import ToForm from '../ToForm/ToForm';
+import CircularLoad from '../CircularLoad/CircularLoad'
 
 
 
@@ -22,9 +23,14 @@ const steps = ['Convert From', 'Choose Filter', 'Convert Too'];
 const newObj = {}
 
 function allData () {
-  console.log("here")
+  console.log("Convert")
+  fetch('http://127.0.0.1:8000/', {  // Enter your IP address here
+  method: 'POST', 
+  mode: 'cors', 
+  body: JSON.stringify(newObj) // body data type must match "Content-Type" header
+
+})
   console.log(newObj)
-  
 }
 
 function saveFromFormData(FromFormData) {
@@ -86,8 +92,9 @@ export default function Checkout() {
               <React.Fragment>
                 {allData(newObj)}
                 <Typography variant="h5" gutterBottom>
-                  Converting
+                  Converting...
                 </Typography>
+                <CircularLoad setBackDrop={true}/>
               </React.Fragment>
             ) : (
               <React.Fragment>
