@@ -21,34 +21,22 @@ const steps = ['Convert From', 'Choose Filter', 'Convert Too'];
 
 const newObj = {}
 
-function allData (allData) {
+function allData () {
   console.log("here")
   console.log(newObj)
   
 }
 
 function saveFromFormData(FromFormData) {
-  const newFromFormData = {
-    ...FromFormData
-  };
-  newObj["FromFormData"] = newFromFormData;
-  //console.log(newFromFormData)
+  newObj["FromFormData"] = FromFormData;
 };
 
 function saveFilterFormData(FilterFormData) {
-  const newFilterFormData = {
-    ...FilterFormData
-  };
-  newObj["newFilterData"] = newFilterFormData;
+  newObj["newFilterData"] = FilterFormData;
 };
 
 function savetoFormData(toFormData) {
-  const newToFormData = {
-    ...toFormData
-  };
-  newObj["newToFormData"] = newToFormData;
-  console.log("firing to form data")
-  console.log(toFormData)
+  newObj["newToFormData"] = toFormData;
 };
 
 function getStepContent(step) {

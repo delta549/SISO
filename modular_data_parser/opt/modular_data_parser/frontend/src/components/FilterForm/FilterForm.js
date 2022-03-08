@@ -10,14 +10,8 @@ export default function FilterForm(props) {
 
   const theme = createTheme();
 
-  const [filterData, setFilterData] = React.useState('');
-
   const handleChange = (event) => {
-    setFilterData(event.target.files);
-    const formData = {
-      files: filterData
-    }
-    props.onSaveFilterFormData(formData)
+    props.onSaveFilterFormData(event.target.files)
 
   };
 
@@ -32,7 +26,6 @@ export default function FilterForm(props) {
           <Grid item xs={6} sm={12}>
             <input
               type="file"
-              //onClick={handleChange}
               onChange={handleChange}
             />
         </Grid>

@@ -12,24 +12,18 @@ export default function AddressForm(props) {
 
   let [dataIn, setDataIn] = React.useState('');
 
-  let [files, setFilesIn] = React.useState('');
-
   const handleChangeSelection = (event) => {
-    dataIn = event.target.value
-    setDataIn(dataIn);
+    setDataIn(event.target.value);
   };
 
   const handleChangeFile = (event) => {
-    console.log("fired")
-    files = event.target.files
-    setFilesIn(files)
     const formData = {
       dataIn: dataIn,
-      files: files
+      fromFiles: event.target.files
     }
     props.onSaveFromFormData(formData);
-    console.log(formData)
   }
+
   return (
     <ThemeProvider theme={theme}>
       <CssBaseline />

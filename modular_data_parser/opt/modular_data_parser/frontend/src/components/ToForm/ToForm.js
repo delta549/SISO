@@ -14,11 +14,7 @@ export default function ToForm(props) {
 
   const handleChange = (event) => {
     setToFormData(event.target.value);
-    setToFormData(event.target.value);
-    const formData = {
-      dataOut: toFormData
-    }
-    props.onSaveToFormData(formData)
+    props.onSaveToFormData(event.target.value)
   };
   
   return (
