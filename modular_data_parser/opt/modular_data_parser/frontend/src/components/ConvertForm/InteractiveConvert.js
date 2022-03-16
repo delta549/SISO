@@ -10,6 +10,7 @@ import Button from '@mui/material/Button';
 import Typography from '@mui/material/Typography';
 import { createTheme, ThemeProvider } from '@mui/material/styles';
 import MenuAppBar from '../MenuAppBar/MenuAppBar';
+import axios from 'axios';
 
 import FromForm from '../FromForm/FromForm';
 import FilterForm from '../FilterForm/FilterForm'
@@ -20,29 +21,30 @@ import CircularLoad from '../CircularLoad/CircularLoad'
 
 const steps = ['Convert From', 'Choose Filter', 'Convert Too'];
 
-const newObj = {}
+const fileData = new FormData();
 
 function allData () {
-  console.log("Convert")
-  fetch('http://127.0.0.1:8000/', {  // Enter your IP address here
-  method: 'POST', 
-  mode: 'cors', 
-  body: JSON.stringify(newObj) // body data type must match "Content-Type" header
-
-})
-  console.log(newObj)
+  axios({
+    method: 'post',
+    url: 'http://localhost:8000/',
+    data: fileData
+  });
 }
 
 function saveFromFormData(FromFormData) {
-  newObj["FromFormData"] = FromFormData;
+  fileData.append('fromFiles', FromFormData["fromFiles"]);
+  fileData.append('dataIn', FromFormData["dataIn"]);
+  console.log(FromFormData)
 };
 
 function saveFilterFormData(FilterFormData) {
-  newObj["newFilterData"] = FilterFormData;
+  fileData.append('filterFiles', FilterFormData);
+  console.log(FilterFormData)
 };
 
 function savetoFormData(toFormData) {
-  newObj["newToFormData"] = toFormData;
+  fileData.append('toFormData', toFormData);
+  console.log(toFormData)
 };
 
 function getStepContent(step) {
@@ -90,7 +92,7 @@ export default function Checkout() {
           <React.Fragment>
             {activeStep === steps.length ? (
               <React.Fragment>
-                {allData(newObj)}
+                {allData()}
                 <Typography variant="h5" gutterBottom>
                   Converting...
                 </Typography>
