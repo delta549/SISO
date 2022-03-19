@@ -3,8 +3,11 @@ package api
 import (
 	//encoding/json"
 	"fmt"
+	"io/ioutil"
 	"log"
 	"net/http"
+	"backend/internal/parser"
+	"backend/internal/commonObjects"
 )
 
 // We have to handle cors options manually here.
@@ -15,6 +18,12 @@ func setupResponse(w *http.ResponseWriter, req *http.Request) {
     (*w).Header().Set("Access-Control-Allow-Headers", "Accept, Content-Type, Content-Length, Accept-Encoding, X-CSRF-Token, Authorization")
 }
 
+func errCheck(err error){
+	if err != nil {
+		fmt.Println(err)
+	}
+}
+
 // Home page
 func homePage(w http.ResponseWriter, r *http.Request) {
 	fmt.Println("Received data!")
@@ -23,9 +32,27 @@ func homePage(w http.ResponseWriter, r *http.Request) {
 	if (*r).Method == "POST" {
 		// 4GB set for MAX Memory size
 		r.ParseMultipartForm(4294967296)
-		fmt.Println(r.Form)
+		//fmt.Println(r.Form)
+		dataOut := r.Form.Get("toFormData")
+		dataIn := r.Form.Get("dataIn")
+
+		file, _, err := r.FormFile("fromFiles")
+		errCheck(err)
+		//fmt.Printf("Uploaded File: %+v\n", handler.Filename)
+		//fmt.Println(file)
+		fileBytes, err := ioutil.ReadAll(file)
+		//fmt.Println(fileBytes)
+		parserStruct := commonobjects.ParsingObject {
+			DataIn: dataIn,
+			DataOut: dataOut,
+			FileIn: fileBytes,
+		}
+		parser.MainParserLoop(parserStruct)
+		errCheck(err)
+
+		// To write files:
+		//ioutil.WriteFile("test.json", fileBytes, fs.FileMode(0644))
 	}
-	log.Println("Endpoint Hit: homePage")
 }
 
 // Request handler

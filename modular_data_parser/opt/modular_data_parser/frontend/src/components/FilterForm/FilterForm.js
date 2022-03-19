@@ -11,7 +11,7 @@ export default function FilterForm(props) {
   const theme = createTheme();
 
   const handleChange = (event) => {
-    props.onSaveFilterFormData(event.target.files)
+    props.onSaveFilterFormData(event.target.files[0])
 
   };
 

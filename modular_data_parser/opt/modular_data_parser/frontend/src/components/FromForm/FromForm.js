@@ -19,7 +19,7 @@ export default function AddressForm(props) {
   const handleChangeFile = (event) => {
     const formData = {
       dataIn: dataIn,
-      fromFiles: event.target.files
+      fromFiles: event.target.files[0]
     }
     props.onSaveFromFormData(formData);
   }
