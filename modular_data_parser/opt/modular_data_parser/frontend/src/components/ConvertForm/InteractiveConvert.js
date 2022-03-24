@@ -28,7 +28,19 @@ function allData () {
     method: 'post',
     url: 'http://localhost:8000/',
     data: fileData
-  });
+  })
+  .then(res => {
+    const url = window.URL.createObjectURL(new Blob([res.data]));
+    const link = document.createElement('a');
+    link.href = url;
+    const fileName = fileData.get("fromFiles")["name"].split('.').slice(0, -1).join('.')
+    const fileExtension = fileData.get("toFormData").toLowerCase()
+    console.log(fileExtension)
+    link.setAttribute('download', fileName+"."+fileExtension); //or any other extension
+    document.body.appendChild(link);
+    link.click();
+  }
+  );
 }
 
 function saveFromFormData(FromFormData) {
