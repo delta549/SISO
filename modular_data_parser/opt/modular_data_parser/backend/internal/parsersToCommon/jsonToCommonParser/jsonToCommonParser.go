@@ -42,8 +42,5 @@ func JsonToCommonParser(incomingParsingObject commonobjects.ParsingObject) (cf c
 
 	cf.KeyValues = input
 
-	//fmt.Println(cf.Keys)
-	//fmt.Printf("%v", cf.KeyValues)
-
 	return cf
 }

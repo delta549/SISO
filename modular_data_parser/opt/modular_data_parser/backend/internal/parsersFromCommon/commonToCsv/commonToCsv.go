@@ -2,12 +2,12 @@ package commontocsv
 
 import (
 	"fmt"
-	"os"
+	//"os"
 	"strings"
 	commonobjects "backend/internal/commonObjects"
 )
 
-func writeValues(cf commonobjects.CommonFormat, f *os.File, overallString string) string {
+func writeValues(cf commonobjects.CommonFormat, overallString string) string {
 	for _, v := range cf.KeyValues{
 		line := ""
 		switch inter := v.(type){
@@ -46,7 +46,7 @@ func CommonToCsvParser(cf commonobjects.CommonFormat) ([]byte) {
 	*/
 
 	// make file:
-	f, _ := os.Create("output.csv")
+	//f, _ := os.Create("output.csv")
 
 	// Make overall string to write.
 	overallString := ""
@@ -57,12 +57,13 @@ func CommonToCsvParser(cf commonobjects.CommonFormat) ([]byte) {
 	overallString = singleKey
 
 	// Write Values
-	overallString = writeValues(cf, f, overallString)
+	overallString = writeValues(cf, overallString)
 
 	// Turn into bytes:
 	overallStringBytes := []byte(overallString)
 
-	f.Write(overallStringBytes)
+	// Test by writing out.
+	//f.Write(overallStringBytes)
 
 	fmt.Printf("%v", overallString)
 

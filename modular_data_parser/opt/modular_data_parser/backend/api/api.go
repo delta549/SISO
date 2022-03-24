@@ -2,23 +2,23 @@ package api
 
 import (
 	//encoding/json"
+	commonobjects "backend/internal/commonObjects"
+	"backend/internal/parser"
 	"fmt"
 	"io/ioutil"
 	"log"
 	"net/http"
-	"backend/internal/parser"
-	"backend/internal/commonObjects"
 )
 
 // We have to handle cors options manually here.
 // Docs at: https://flaviocopes.com/golang-enable-cors/
 func setupResponse(w *http.ResponseWriter, req *http.Request) {
 	(*w).Header().Set("Access-Control-Allow-Origin", "*")
-    (*w).Header().Set("Access-Control-Allow-Methods", "POST, GET, OPTIONS, PUT, DELETE")
-    (*w).Header().Set("Access-Control-Allow-Headers", "Accept, Content-Type, Content-Length, Accept-Encoding, X-CSRF-Token, Authorization")
+	(*w).Header().Set("Access-Control-Allow-Methods", "POST, GET, OPTIONS, PUT, DELETE")
+	(*w).Header().Set("Access-Control-Allow-Headers", "Accept, Content-Type, Content-Length, Accept-Encoding, X-CSRF-Token, Authorization")
 }
 
-func errCheck(err error){
+func errCheck(err error) {
 	if err != nil {
 		fmt.Println(err)
 	}
@@ -43,15 +43,16 @@ func homePage(w http.ResponseWriter, r *http.Request) {
 		fileBytes, err := ioutil.ReadAll(file)
 		errCheck(err)
 		//fmt.Println(fileBytes)
-		parserStruct := commonobjects.ParsingObject {
-			DataIn: dataIn,
+		parserStruct := commonobjects.ParsingObject{
+			DataIn:  dataIn,
 			DataOut: dataOut,
-			FileIn: fileBytes,
+			FileIn:  fileBytes,
 		}
 		parserStruct = parser.MainParserLoop(parserStruct)
 
-
-
+		// Create Response fto send back to user:
+		w.Header().Set("Content-Type", "application/octet-stream")
+		w.Write(parserStruct.FileOut)
 	}
 }
 
