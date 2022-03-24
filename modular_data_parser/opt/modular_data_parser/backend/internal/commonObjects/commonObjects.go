@@ -7,3 +7,11 @@ type ParsingObject struct {
 	FileIn []byte // Original File bytes in.
 	FileOut []byte // File bytes to be returned.
 }
+
+// The common object which all data is turned into for parsing:
+type CommonFormat struct {
+	Keys      []string
+	KeyValues []interface{}
+}
+
+

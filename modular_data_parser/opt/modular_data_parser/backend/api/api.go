@@ -41,17 +41,17 @@ func homePage(w http.ResponseWriter, r *http.Request) {
 		//fmt.Printf("Uploaded File: %+v\n", handler.Filename)
 		//fmt.Println(file)
 		fileBytes, err := ioutil.ReadAll(file)
+		errCheck(err)
 		//fmt.Println(fileBytes)
 		parserStruct := commonobjects.ParsingObject {
 			DataIn: dataIn,
 			DataOut: dataOut,
 			FileIn: fileBytes,
 		}
-		parser.MainParserLoop(parserStruct)
-		errCheck(err)
+		parserStruct = parser.MainParserLoop(parserStruct)
 
-		// To write files:
-		//ioutil.WriteFile("test.json", fileBytes, fs.FileMode(0644))
+
+
 	}
 }
 
