@@ -18,14 +18,14 @@ import ToForm from '../ToForm/ToForm';
 import CircularLoad from '../CircularLoad/CircularLoad'
 
 
-
 const steps = ['Convert From', 'Choose Filter', 'Convert Too'];
 
 const fileData = new FormData();
 
 function allData () {
+  console.log("sending")
   axios({
-    method: 'post',
+    method: 'POST',
     url: 'http://localhost:8000/',
     data: fileData
   })
@@ -35,10 +35,10 @@ function allData () {
     link.href = url;
     const fileName = fileData.get("fromFiles")["name"].split('.').slice(0, -1).join('.')
     const fileExtension = fileData.get("toFormData").toLowerCase()
-    console.log(fileExtension)
     link.setAttribute('download', fileName+"."+fileExtension); //or any other extension
     document.body.appendChild(link);
     link.click();
+    window.location.reload(false);
   }
   );
 }
@@ -46,17 +46,17 @@ function allData () {
 function saveFromFormData(FromFormData) {
   fileData.append('fromFiles', FromFormData["fromFiles"]);
   fileData.append('dataIn', FromFormData["dataIn"]);
-  console.log(FromFormData)
+  //console.log(FromFormData)
 };
 
 function saveFilterFormData(FilterFormData) {
   fileData.append('filterFiles', FilterFormData);
-  console.log(FilterFormData)
+  //console.log(FilterFormData)
 };
 
 function savetoFormData(toFormData) {
   fileData.append('toFormData', toFormData);
-  console.log(toFormData)
+  //console.log(toFormData)
 };
 
 function getStepContent(step) {
@@ -79,6 +79,10 @@ export default function Checkout() {
 
   const handleNext = () => {
     setActiveStep(activeStep + 1);
+    //console.log(activeStep)
+    if (activeStep === 2){
+      allData()
+    }
   };
 
   const handleBack = () => {
@@ -104,7 +108,6 @@ export default function Checkout() {
           <React.Fragment>
             {activeStep === steps.length ? (
               <React.Fragment>
-                {allData()}
                 <Typography variant="h5" gutterBottom>
                   Converting...
                 </Typography>
@@ -120,7 +123,6 @@ export default function Checkout() {
                       Back
                     </Button>
                   )}
-
                   <Button
                     variant="contained"
                     onClick={handleNext}

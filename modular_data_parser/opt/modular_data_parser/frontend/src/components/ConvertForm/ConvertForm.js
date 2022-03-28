@@ -15,7 +15,7 @@ class ConvertForm extends Component {
 
   handleChangeFirst(event) {
     this.setState({valueOne: event.target.value});
-    console.log(this.state.valueOne)
+    //console.log(this.state.valueOne)
   }
 
   handleChangeSecond(event) {
