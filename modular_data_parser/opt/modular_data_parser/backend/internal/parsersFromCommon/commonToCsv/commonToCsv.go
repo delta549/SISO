@@ -2,9 +2,10 @@ package commontocsv
 
 import (
 	"fmt"
+	"log"
 	//"os"
-	"strings"
 	commonobjects "backend/internal/commonObjects"
+	"strings"
 )
 
 func writeValues(cf commonobjects.CommonFormat, overallString string) string {
@@ -48,6 +49,8 @@ func CommonToCsvParser(cf commonobjects.CommonFormat) ([]byte) {
 	// make file:
 	//f, _ := os.Create("output.csv")
 
+	log.Println("Starting CSV parser")
+
 	// Make overall string to write.
 	overallString := ""
 
@@ -65,7 +68,9 @@ func CommonToCsvParser(cf commonobjects.CommonFormat) ([]byte) {
 	// Test by writing out.
 	//f.Write(overallStringBytes)
 
-	fmt.Printf("%v", overallString)
+	//fmt.Printf("%v", overallString)
+
+	log.Println("CSV parser complete")
 
 	return overallStringBytes
 

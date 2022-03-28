@@ -3,8 +3,8 @@ package jsontocommon
 import (
 	commonobjects "backend/internal/commonObjects"
 	"encoding/json"
-	"fmt"
 	"reflect"
+	"log"
 )
 
 /* JsonParser designed to parse json into a
@@ -13,7 +13,7 @@ selected format
 */
 
 func extractKeyValues(keyValuesMap map[string]interface{}, keys []string) []string {
-	fmt.Println("Extracting Keys")
+	//fmt.Println("Extracting Keys")
 	for k, _ := range keyValuesMap {
 		keys = append(keys, k)
 	}
@@ -31,8 +31,7 @@ func extractArrayKeyValues(arrayKeyValues []interface{}) []string {
 
 // Returns a CommonFormat object:
 func JsonToCommonParser(incomingParsingObject commonobjects.ParsingObject) (cf commonobjects.CommonFormat) {
-
-	fmt.Println("Starting json file parser...")
+	log.Println("Starting JSON parser...")
 	// Unmarshall json unknown json string.
 	var input []interface{}
 	//cf := commonobjects.CommonFormat{}
@@ -41,6 +40,8 @@ func JsonToCommonParser(incomingParsingObject commonobjects.ParsingObject) (cf c
 	cf.Keys = extractArrayKeyValues(input)
 
 	cf.KeyValues = input
+
+	log.Println("JSON parser complete")
 
 	return cf
 }
