@@ -3,8 +3,10 @@ package parser
 import (
 	commonobjects "backend/internal/commonObjects"
 	commontocsv "backend/internal/parsersFromCommon/commonToCsv"
+	commontojson "backend/internal/parsersFromCommon/commonToJson"
 	csvtocommon "backend/internal/parsersToCommon/csvToCommonParser"
 	jsontocommon "backend/internal/parsersToCommon/jsonToCommonParser"
+	//"fmt"
 	"log"
 )
 
@@ -37,6 +39,12 @@ func MainParserLoop(incomingParsingObject commonobjects.ParsingObject) commonobj
 	case "CSV":
 		log.Println("CSV detected OUT!")
 		incomingParsingObject.FileOut = commontocsv.CommonToCsvParser(cf)
+	case "JSON":
+		log.Println("JSON detected OUT!")
+		incomingParsingObject.FileOut = commontojson.CommonToJsonParser(cf)
+
+		//fmt.Println(string(incomingParsingObject.FileOut))
+
 	}
 
 	//fmt.Printf("%v", incomingParsingObject.FileOut)

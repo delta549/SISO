@@ -1,0 +1,12 @@
+[
+ {
+  "fruit": "banana",
+  "rank": 1,
+  "vegetable": "carrot"
+ },
+ {
+  "fruit": "strawberry",
+  "rank": 2,
+  "vegetable": "potato"
+ }
+]

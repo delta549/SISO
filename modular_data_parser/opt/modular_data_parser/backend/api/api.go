@@ -50,7 +50,11 @@ func homePage(w http.ResponseWriter, r *http.Request) {
 		parserStruct = parser.MainParserLoop(parserStruct)
 
 		// Create Response fto send back to user:
-		w.Header().Set("Content-Type", "application/octet-stream")
+		if dataOut == "JSON"{
+			w.Header().Set("Content-Type", "application/json")
+		}else{
+			w.Header().Set("Content-Type", "application/octet-stream")
+		}
 		w.Write(parserStruct.FileOut)
 	}
 }
