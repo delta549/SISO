@@ -28,7 +28,7 @@ func MainParserLoop(incomingParsingObject commonobjects.ParsingObject) commonobj
 		//fmt.Printf("%v", cf.Keys)
 	case "CSV":
 		log.Println("CSV detected IN")
-		csvtocommon.CsvToCommonParser(incomingParsingObject)
+		cf = csvtocommon.CsvToCommonParser(incomingParsingObject)
 		//case 3:
 		//    fmt.Println("three")
 	}

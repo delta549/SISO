@@ -31,7 +31,7 @@ func extractArrayKeyValues(arrayKeyValues []interface{}) []string {
 
 // Returns a CommonFormat object:
 func JsonToCommonParser(incomingParsingObject commonobjects.ParsingObject) (cf commonobjects.CommonFormat) {
-	log.Println("Starting JSON parser...")
+	log.Println("Starting JSON parser IN")
 	// Unmarshall json unknown json string.
 	var input []interface{}
 	//cf := commonobjects.CommonFormat{}
