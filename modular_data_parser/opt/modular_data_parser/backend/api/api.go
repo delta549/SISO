@@ -31,21 +31,28 @@ func homePage(w http.ResponseWriter, r *http.Request) {
 	if (*r).Method == "POST" {
 		// 4GB set for MAX Memory size
 		r.ParseMultipartForm(4294967296)
-		//fmt.Println(r.Form)
 		dataOut := r.Form.Get("toFormData")
 		dataIn := r.Form.Get("dataIn")
 
-		file, _, err := r.FormFile("fromFiles")
+		// To print multipartForm file key/values!
+		//fmt.Println(r.MultipartForm)
+
+		fromFile, _, err := r.FormFile("fromFiles")
+		errCheck(err)
+		filterFile, _, err := r.FormFile("filterFiles")
 		errCheck(err)
 		//fmt.Printf("Uploaded File: %+v\n", handler.Filename)
 		//fmt.Println(file)
-		fileBytes, err := ioutil.ReadAll(file)
+		fromFileBytes, err := ioutil.ReadAll(fromFile)
+		errCheck(err)
+		filterFileBytes, err := ioutil.ReadAll(filterFile)
 		errCheck(err)
 		//fmt.Println(fileBytes)
 		parserStruct := commonobjects.ParsingObject{
 			DataIn:  dataIn,
 			DataOut: dataOut,
-			FileIn:  fileBytes,
+			FileIn:  fromFileBytes,
+			FilterFile: filterFileBytes,
 		}
 		parserStruct = parser.MainParserLoop(parserStruct)
 

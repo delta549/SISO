@@ -51,7 +51,7 @@ func CommonToCsvParser(cf commonobjects.CommonFormat) ([]byte) {
 
 	log.Println("Starting CSV parser OUT")
 
-	fmt.Println(cf.Keys)
+	//fmt.Println(cf.Keys)
 
 	// Make overall string to write.
 	overallString := ""
@@ -70,7 +70,7 @@ func CommonToCsvParser(cf commonobjects.CommonFormat) ([]byte) {
 	// Test by writing out.
 	//f.Write(overallStringBytes)
 
-	fmt.Printf("%v", overallString)
+	//fmt.Printf("%v", overallString)
 
 	log.Println("CSV parser complete")
 
