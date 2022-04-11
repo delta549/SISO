@@ -38,7 +38,7 @@ func MainParserLoop(incomingParsingObject commonobjects.ParsingObject) commonobj
 		//    fmt.Println("three")
 	}
 
-	//cf = filterkeys.FilterMain(incomingParsingObject, cf)
+	cf = filterkeys.FilterMain(incomingParsingObject, cf)
 
 	switch incomingParsingObject.DataOut {
 	case "CSV":

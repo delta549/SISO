@@ -3,8 +3,8 @@ package jsontocommon
 import (
 	commonobjects "backend/internal/commonObjects"
 	"encoding/json"
-	"reflect"
 	"log"
+	"reflect"
 )
 
 /* JsonParser designed to parse json into a

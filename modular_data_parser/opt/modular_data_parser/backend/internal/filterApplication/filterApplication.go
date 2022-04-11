@@ -3,11 +3,12 @@ package filterkeys
 import (
 	commonobjects "backend/internal/commonObjects"
 	"encoding/json"
-	"fmt"
+	//"fmt"
 	"log"
+	//"reflect"
 )
 
-func filterOut(trueKey string, cf commonobjects.CommonFormat, newKeys []string) []string{
+func filterOutKeys(trueKey string, cf commonobjects.CommonFormat, newKeys []string) []string {
 	for _, key := range cf.Keys{
 		if key == trueKey{
 			newKeys = append(newKeys, key)
@@ -16,6 +17,32 @@ func filterOut(trueKey string, cf commonobjects.CommonFormat, newKeys []string) 
 	return newKeys
 }
 
+func filterOutKeyValues(cf commonobjects.CommonFormat, newKeys []string) []interface{}{
+	var newMappedObjectArray []interface{}
+	for _, originalObject := range cf.KeyValues{
+		newMappedOriginalObject := make(map[string]interface{})
+		for _, key := range newKeys{
+			mappedOriginalObject := originalObject.(map[string]interface{})
+			for k, v := range mappedOriginalObject{
+				if key == k{
+					var x interface{} = v
+					newMappedOriginalObject[key] = x
+				}
+			}
+		}
+		newMappedObjectArray = append(newMappedObjectArray, newMappedOriginalObject)
+	}
+
+	return newMappedObjectArray
+}
+
+func extractKeyValues(keyValuesMap map[string]interface{}, keys []string) []string {
+	//fmt.Println("Extracting Keys")
+	for k, _ := range keyValuesMap {
+		keys = append(keys, k)
+	}
+	return keys
+}
 
 func extractFilterKeyValues(filterKeyValues interface{}, cf commonobjects.CommonFormat,
 	newKeys []string, newKeyValues []interface{}) ([]string, []interface{}){
@@ -24,20 +51,12 @@ func extractFilterKeyValues(filterKeyValues interface{}, cf commonobjects.Common
 		somethingnew := filterKeyValues.(map[string]interface{})
 		for trueKey, v := range somethingnew {
 			if v == true {
-				newKeys = filterOut(trueKey, cf, newKeys)
-			}
-			for _, obj := range cf.KeyValues{
-				switch obj.(type){
-				case map[string]interface{}:
-					newobj := obj.(map[string]interface{})
-					fmt.Println(trueKey)
-					delete(newobj, trueKey)
-					newKeyValues = append(newKeyValues, newobj)
-				}
+				newKeys = filterOutKeys(trueKey, cf, newKeys)
 			}
 		}
 	}
 
+	newKeyValues = filterOutKeyValues(cf, newKeys)
 	return newKeys, newKeyValues
 }
 
@@ -59,7 +78,7 @@ func FilterMain(incomingParsingObject commonobjects.ParsingObject, cf commonobje
 
 	cf.Keys = newKeys
 
-	//cf.KeyValues = newKeyValues
+	cf.KeyValues = newKeyValues
 
 	return cf
 }

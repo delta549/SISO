@@ -1,5 +1,5 @@
 {
     "vegetable": true,
-    "fruit": true,
+    "fruit": false,
     "rank": true
 }
