@@ -7,9 +7,6 @@ import (
 	commontojson "backend/internal/parsersFromCommon/commonToJson"
 	csvtocommon "backend/internal/parsersToCommon/csvToCommonParser"
 	jsontocommon "backend/internal/parsersToCommon/jsonToCommonParser"
-	//"fmt"
-
-	//"fmt"
 	"log"
 )
 
@@ -38,7 +35,9 @@ func MainParserLoop(incomingParsingObject commonobjects.ParsingObject) commonobj
 		//    fmt.Println("three")
 	}
 
-	cf = filterkeys.FilterMain(incomingParsingObject, cf)
+	if (len(incomingParsingObject.FilterFile) > 0) {
+		cf = filterkeys.FilterMain(incomingParsingObject, cf)
+	}
 
 	switch incomingParsingObject.DataOut {
 	case "CSV":

@@ -29,6 +29,7 @@ func homePage(w http.ResponseWriter, r *http.Request) {
 	setupResponse(&w, r)
 	// IF we have a post deal here:
 	if (*r).Method == "POST" {
+		filterFileBytes := []byte{}
 		// 4GB set for MAX Memory size
 		r.ParseMultipartForm(4294967296)
 		dataOut := r.Form.Get("toFormData")
@@ -39,15 +40,19 @@ func homePage(w http.ResponseWriter, r *http.Request) {
 
 		fromFile, _, err := r.FormFile("fromFiles")
 		errCheck(err)
-		filterFile, _, err := r.FormFile("filterFiles")
+		filterFile, _, filterFileErr := r.FormFile("filterFiles")
 		errCheck(err)
 		//fmt.Printf("Uploaded File: %+v\n", handler.Filename)
 		//fmt.Println(file)
 		fromFileBytes, err := ioutil.ReadAll(fromFile)
 		errCheck(err)
-		filterFileBytes, err := ioutil.ReadAll(filterFile)
-		errCheck(err)
-		//fmt.Println(fileBytes)
+
+		// Set filterFileBytes to read if the err is nil
+		if filterFileErr == nil {
+			filterFileBytes, _ = ioutil.ReadAll(filterFile)
+		}
+
+
 		parserStruct := commonobjects.ParsingObject{
 			DataIn:  dataIn,
 			DataOut: dataOut,
