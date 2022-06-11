@@ -14,7 +14,7 @@ func writeValues(cf commonobjects.CommonFormat, overallString string, delim stri
 		switch inter := v.(type){
 		case map[string]interface{}:
 			for _, key := range cf.Keys{
-				line = line + fmt.Sprintf("%v,", inter[key])
+				line = line + fmt.Sprintf("%v%v", inter[key], delim)
 			}
 			line = strings.TrimRight(line, delim)
 			line = line + "\n"
