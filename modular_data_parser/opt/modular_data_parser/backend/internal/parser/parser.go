@@ -5,8 +5,11 @@ import (
 	filterkeys "backend/internal/filterApplication"
 	commontocsv "backend/internal/parsersFromCommon/commonToCsv"
 	commontojson "backend/internal/parsersFromCommon/commonToJson"
+	commontotsv "backend/internal/parsersFromCommon/commonToTsv"
 	csvtocommon "backend/internal/parsersToCommon/csvToCommonParser"
 	jsontocommon "backend/internal/parsersToCommon/jsonToCommonParser"
+	tsvtocommon "backend/internal/parsersToCommon/tsvToCommonParser"
+
 	"log"
 )
 
@@ -33,6 +36,9 @@ func MainParserLoop(incomingParsingObject commonobjects.ParsingObject) commonobj
 		cf = csvtocommon.CsvToCommonParser(incomingParsingObject)
 		//case 3:
 		//    fmt.Println("three")
+		case "TSV":
+		log.Println("TSV detected IN")
+		cf = tsvtocommon.TSVToCommonParser(incomingParsingObject)
 	}
 
 	if (len(incomingParsingObject.FilterFile) > 0) {
@@ -48,8 +54,12 @@ func MainParserLoop(incomingParsingObject commonobjects.ParsingObject) commonobj
 		incomingParsingObject.FileOut = commontojson.CommonToJsonParser(cf)
 
 		//fmt.Println(string(incomingParsingObject.FileOut))
-
+	case "TSV":
+		log.Println("TSV detected OUT!")
+		incomingParsingObject.FileOut = commontotsv.CommonToTabParser(cf)
 	}
+
+
 
 	//fmt.Printf("%v", incomingParsingObject.FileOut)
 
