@@ -8,6 +8,7 @@ import (
 	"io/ioutil"
 	"log"
 	"net/http"
+	"encoding/json"
 )
 
 // We have to handle cors options manually here.
@@ -71,14 +72,33 @@ func homePage(w http.ResponseWriter, r *http.Request) {
 	}
 }
 
+func test(w http.ResponseWriter, r *http.Request){
+	w.Header().Set("Content-Type", "application/json")
+
+	type responseDataStruct struct {
+		Response string
+	}
+
+	reponseData := responseDataStruct {
+		Response: "Success",
+	}
+
+	jData, _ := json.Marshal(reponseData)
+
+	w.Write(jData)
+}
+
 // Request handler
-func handleRequests(apiPort string) {
+func handleRequests(apiPort string, ipAddress string) {
+	http.HandleFunc("/testendpoint", test)
 	http.HandleFunc("/", homePage)
-	log.Fatal(http.ListenAndServe(fmt.Sprintf(":%s", apiPort), nil))
+	log.Fatal(http.ListenAndServe(fmt.Sprintf("%s:%s", ipAddress ,apiPort), nil))
+	//http.ListenAndServe("127.0.0.1:8000", nil)
+
 }
 
 // API loop for requests is here:
-func MainApiLoop(apiPort string) {
+func MainApiLoop(apiPort string, ipAddress string) {
 	log.Printf("Starting API on port: %s\n", apiPort)
-	handleRequests(apiPort)
+	handleRequests(apiPort, ipAddress)
 }
