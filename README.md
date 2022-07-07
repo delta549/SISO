@@ -3,17 +3,15 @@ A highly scalable and modular data parser designed to be easy to use and install
 
 ## Table of contents:
 
-[What really is SISO?](##What-really-is-SISO?)
+[What really is SISO?](#What-really-is-SISO?)
 
-[Installation](##Installation:)
+[Installation](#Installation)
 
-[Contributions:](##Contributions:)
+[Contributions:](#Contributions)
 
-[Installation](##Installation:)
+[How it works:](#How-it-works)
 
-[How it works:](##How-it-works:)
-
-[Made by:](##Made-by:)
+[Made by:](#Made-by)
 
 ## What really is SISO?
 
@@ -36,7 +34,7 @@ All contributions are welcome.
 The GO code converts data from a given format into an intermediate format then to a selected formate for example:
 
 ```mermaid
-graph LR;
+flowchart LR;
 CSV<-->COMMON-FORMAT((COMMON-FORMAT));
 TSV<-->COMMON-FORMAT((COMMON-FORMAT));
 JSON<-->COMMON-FORMAT((COMMON-FORMAT));
