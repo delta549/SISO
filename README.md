@@ -5,7 +5,7 @@ A highly scalable and modular data parser designed to be easy to use and install
 
 [What really is SISO?](#What-really-is-SISO?)
 
-[Installation](#Installation:)
+[Installation](#Installation)
 
 [Contributions:](#Contributions)
 
