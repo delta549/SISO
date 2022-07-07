@@ -5,15 +5,15 @@ A highly scalable and modular data parser designed to be easy to use and install
 
 [What really is SISO?](##What-really-is-SISO?)
 
+[Installation](#Installation)
+
+[Contributions:](##Contributions)
+
 [Installation](##Installation)
 
-[Contributions:](##Contributions:)
+[How it works:](##How-it-works)
 
-[Installation](##Installation:)
-
-[How it works:](##How-it-works:)
-
-[Made by:](##Made-by:)
+[Made by:](##Made-by)
 
 ## What really is SISO?
 
