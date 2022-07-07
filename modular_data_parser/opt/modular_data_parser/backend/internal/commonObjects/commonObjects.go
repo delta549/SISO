@@ -6,6 +6,7 @@ type ParsingObject struct {
 	DataOut string // Data type out  e.g. tsv,csv,json.
 	FileIn []byte // Original File bytes in.
 	FileOut []byte // File bytes to be returned.
+	FilterFile []byte // Original Filter bytes.
 }
 
 // The common object which all data is turned into for parsing:

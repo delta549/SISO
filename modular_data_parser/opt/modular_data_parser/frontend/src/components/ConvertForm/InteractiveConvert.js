@@ -30,7 +30,15 @@ function allData () {
     data: fileData
   })
   .then(res => {
-    const url = window.URL.createObjectURL(new Blob([res.data]));
+    console.log(res["headers"]["content-type"])
+    var url = null
+    if (res["headers"]["content-type"] === "application/json"){
+       url = window.URL.createObjectURL(new Blob([JSON.stringify(res.data)]));
+
+    }else{
+       url = window.URL.createObjectURL(new Blob([res.data]));
+    }
+    console.log(url)
     const link = document.createElement('a');
     link.href = url;
     const fileName = fileData.get("fromFiles")["name"].split('.').slice(0, -1).join('.')

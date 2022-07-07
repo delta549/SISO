@@ -1,4 +1,4 @@
-package commontocsv
+package commontotsv
 
 import (
 	"fmt"
@@ -8,15 +8,15 @@ import (
 	"strings"
 )
 
-func writeValues(cf commonobjects.CommonFormat, overallString string) string {
+func writeValues(cf commonobjects.CommonFormat, overallString string, delim string) string {
 	for _, v := range cf.KeyValues{
 		line := ""
 		switch inter := v.(type){
 		case map[string]interface{}:
 			for _, key := range cf.Keys{
-				line = line + fmt.Sprintf("%v,", inter[key])
+				line = line + fmt.Sprintf("%v%v", inter[key], delim)
 			}
-			line = strings.TrimRight(line, ",")
+			line = strings.TrimRight(line, delim)
 			line = line + "\n"
 			overallString = overallString + line
 		}
@@ -24,7 +24,7 @@ func writeValues(cf commonobjects.CommonFormat, overallString string) string {
 	return overallString
 }
 
-func CommonToCsvParser(cf commonobjects.CommonFormat) ([]byte) {
+func CommonToTabParser(cf commonobjects.CommonFormat) ([]byte) {
 
 
 	//cf.Keys 
@@ -52,17 +52,18 @@ func CommonToCsvParser(cf commonobjects.CommonFormat) ([]byte) {
 	log.Println("Starting CSV parser OUT")
 
 	//fmt.Println(cf.Keys)
+	delim := "\t"
 
 	// Make overall string to write.
 	overallString := ""
 
 	// Write headers
-	singleKey := strings.Join(cf.Keys, ",")
+	singleKey := strings.Join(cf.Keys, delim)
 	singleKey = singleKey + "\n"
 	overallString = singleKey
 
 	// Write Values
-	overallString = writeValues(cf, overallString)
+	overallString = writeValues(cf, overallString, delim)
 
 	// Turn into bytes:
 	overallStringBytes := []byte(overallString)
@@ -72,7 +73,7 @@ func CommonToCsvParser(cf commonobjects.CommonFormat) ([]byte) {
 
 	//fmt.Printf("%v", overallString)
 
-	log.Println("CSV parser complete")
+	log.Println("TAB parser complete")
 
 	return overallStringBytes
 
