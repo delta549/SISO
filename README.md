@@ -11,6 +11,8 @@ A highly scalable and modular data parser designed to be easy to use and install
 
 [How it works:](#How-it-works)
 
+[WARNING](#warning)
+
 [Made by:](#Made-by)
 
 ## What really is SISO?
@@ -47,6 +49,10 @@ To achieve this the GO program is split into 3 stages:
 1. Convert Incoming data to the common format of []interface{}
 2. Apply any simple filtering techniques as shown in the example filter folder.
 3. Convert from common format into chosen format.
+
+## WARNING
+
+THIS IS STILL VERY MUCH IN DEVELOPMENT
 
 ## Made by:
 Wes
